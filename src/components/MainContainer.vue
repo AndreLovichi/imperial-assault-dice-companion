@@ -1,6 +1,24 @@
 <template>
     <v-container>
-        <v-row class="text-center">
+        <Section title="Attack">
+            <p>Select attack dices</p>
+            <DiceCounter
+                v-model="diceCount"
+            />
+            <p>Error message</p>
+        </Section>
+
+        <Section title="Defense">
+            <p>Select defense dices</p>
+            <p>Error message</p>
+        </Section>
+
+        <Section title="Results">
+            <p>Loader</p>
+            <p>Results</p>
+        </Section>
+
+        <v-row class="text-center mt-8">
             <v-col cols="12">
                 <v-img
                     :src="require('../assets/logo.svg')"
@@ -92,10 +110,16 @@
 </template>
 
 <script>
-    export default {
-        name: 'HelloWorld',
+    import DiceCounter from "./DiceCounter.vue";
+    import Section from "./Section.vue";
 
+    export default {
+        components: {
+            DiceCounter,
+            Section
+        },
         data: () => ({
+            diceCount: 0,
             ecosystem: [
                 {
                     text: 'vuetify-loader',

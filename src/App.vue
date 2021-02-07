@@ -1,56 +1,20 @@
 <template>
     <v-app>
-        <v-app-bar
-            app
-            color="primary"
-            dark
-        >
-            <div class="d-flex align-center">
-                <v-img
-                    alt="IADC Logo"
-                    class="shrink mr-2"
-                    contain
-                    src="/images/site-logo.png"
-                    transition="scale-transition"
-                    width="32"
-                    heigth="32"
-                />
-
-                <h1 class="title">
-                    Imperial Assault Dice Companion
-                </h1>
-            </div>
-        </v-app-bar>
-
+        <Header />
         <v-main>
-            <HelloWorld/>
+            <MainContainer/>
         </v-main>
     </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Header from "./components/Header.vue";
+import MainContainer from "./components/MainContainer.vue";
 
 export default {
-    name: 'App',
-
     components: {
-        HelloWorld,
+        Header,
+        MainContainer,
     },
-
-    data: () => ({
-        //
-    }),
 };
 </script>
-
-<style lang="scss" scoped>
-    .title {
-        font-family: "STARWARS", "Roboto" !important;
-        font-weight: normal;
-        font-size: 1.75rem !important;
-        text-transform: uppercase;
-
-        margin: 4px 0 0 10px;
-    }
-</style>
