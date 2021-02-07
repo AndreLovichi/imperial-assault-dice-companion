@@ -1,9 +1,15 @@
 <template>
-    <div>
+    <div class="dice-counter">
+        <div
+            class="dice-type"
+            :style="{'background-color': color, 'color': textColor}"
+        >
+            {{ title }}
+        </div>
+
         <v-text-field
             v-model="innerValue"
             append-outer-icon="mdi-plus-circle"
-            class="dice-counter"
             dense
             outlined
             prepend-icon="mdi-minus-circle"
@@ -19,6 +25,18 @@ const MAX_DICE_COUNT = 5;
 
 export default {
     props: {
+        color: {
+            type: String,
+            default: "#203f9a"
+        },
+        textColor: {
+            type: String,
+            default: "white"
+        },
+        title: {
+            type: String,
+            default: "Blue"
+        },
         value: {
             type: Number,
             default: 0
@@ -56,6 +74,18 @@ export default {
 <style lang="scss">
     .dice-counter {
         width: 150px;
+
+        .dice-type {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px auto;
+
+            font-size: 24px;
+
+            border-radius: 24px;
+            text-align: center;
+            line-height: 80px;
+        }
 
         &.v-input.primary--text .v-icon {
             color: rgba(0, 0, 0, 0.54) !important;

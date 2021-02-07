@@ -4,6 +4,9 @@
             <p>Select attack dices</p>
             <DiceCounter
                 v-model="diceCount"
+                color="#203f9a"
+                title="Blue"
+                textColor="white"
             />
             <p>Error message</p>
         </Section>
