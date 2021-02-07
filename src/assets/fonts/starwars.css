@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "STARWARS";
+    src: url('../fonts/STARWARS.eot'),
+    url('../fonts/STARWARS.ttf') format("truetype"),
+    url('../fonts/STARWARS.woff') format("woff"),
+    url('../fonts/STARWARS.svg') format("truetype");
+}
