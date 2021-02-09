@@ -13,6 +13,7 @@
             dense
             outlined
             prepend-icon="mdi-minus-circle"
+            readonly
             rounded
             @click:prepend="decreaseDiceCount"
             @click:append-outer="increaseDiceCount"
@@ -86,6 +87,8 @@ export default {
             border-radius: 24px;
             text-align: center;
             line-height: 80px;
+
+            cursor: default;
         }
 
         .v-input.v-text-field {

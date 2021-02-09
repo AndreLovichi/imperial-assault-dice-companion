@@ -1,16 +1,11 @@
 <template>
     <v-container>
-        <AttackSection
-            @dice-counts-updated="updateAttackDice"
-        />
+        <AttackSection />
 
-        <DefenceSection
-            @dice-counts-updated="updateDefenseDice"
-        />
+        <DefenceSection />
 
-        <Section title="Results">
-            <p>Loader</p>
-            <p>Results</p>
+        <Section title="Analysis">
+            <StartAnalysisButton />
         </Section>
     </v-container>
 </template>
@@ -19,35 +14,14 @@
     import AttackSection from "./AttackSection.vue";
     import DefenceSection from "./DefenseSection.vue";
     import Section from "./Section.vue";
+    import StartAnalysisButton from "./StartAnalysisButton";
 
     export default {
         components: {
             AttackSection,
             DefenceSection,
-            Section
-        },
-        data() {
-            return {
-                attackDice: {
-                    blueDiceCount: 0,
-                    greenDiceCount: 0,
-                    redDiceCount: 0,
-                    yellowDiceCount: 0
-                },
-
-                defenseDice: {
-                    blackDiceCount: 0,
-                    whiteDiceCount: 0
-                }
-            }
-        },
-        methods: {
-            updateAttackDice(dices) {
-                this.attackDice = dices;
-            },
-            updateDefenseDice(dices) {
-                this.defenseDice = dices;
-            }
+            Section,
+            StartAnalysisButton
         }
     }
 </script>

@@ -1,15 +1,29 @@
 <template>
-    <Section title="Defense dices">
+    <Section
+        class="mb-12"
+        title="Defense dices"
+    >
         <v-row>
             <DiceCounter color="black" />
             <DiceCounter color="white" />
+        </v-row>
+        <v-row class="messages">
+            <p
+                class="floating-message error-message"
+                v-if="tooManyDefenseDice"
+            >
+                {{ tooManyDefenseDiceMessage }}
+            </p>
         </v-row>
     </Section>
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+
     import DiceCounter from "./DiceCounter.vue";
     import Section from "./Section.vue";
+    import diceService from "../services/dice";
 
     export default {
         components: {
@@ -17,23 +31,27 @@
             Section
         },
         computed: {
-            defenseDice() {
-                return {
-                    blackDiceCount: this.blackDiceCount,
-                    whiteDiceCount: this.whiteDiceCount
-                }
-            }
-        },
-        data() {
-            return {
-                blackDiceCount: 0,
-                whiteDiceCount: 0,
-            };    
-        },
-        methods: {
-            updateDiceCounts() {
-                this.$emit("dice-counts-updated", this.defenseDice);
+            ...mapGetters("dice", [
+                "tooManyDefenseDice"
+            ]),
+            tooManyDefenseDiceMessage() {
+                return `Please select ${diceService.MAX_ATTACK_DICE_COUNT} attack dice or less.`;
             }
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .messages {
+        position: relative;
+
+        .floating-message {
+            position: absolute;
+            top: -10px;
+        }
+
+        .error-message {
+            color: red;
+        }
+    }
+</style>

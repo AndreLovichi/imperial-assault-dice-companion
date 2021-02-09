@@ -1,14 +1,26 @@
 <template>
-    <Section title="Attack dices">
+    <Section
+        class="mb-12"
+        title="Attack dices"
+    >
         <v-row>
             <DiceCounter color="blue" />
             <DiceCounter color="green" />
             <DiceCounter color="yellow" />
             <DiceCounter color="red" />
         </v-row>
-        <v-row class="error-messages">
-            <p v-if="areTooManyDice">
-                {{ tooManyDiceMessage }}
+        <v-row class="messages">
+            <p
+                class="floating-message"
+                v-if="noAttackDice"
+            >
+                {{ noAttackDiceMessage }}
+            </p>
+            <p
+                class="floating-message error-message"
+                v-if="tooManyAttackDice"
+            >
+                {{ tooManyAttackDiceMessage }}
             </p>
         </v-row>
     </Section>
@@ -27,19 +39,31 @@
             Section
         },
         computed: {
-            ...mapGetters("dice", ["getAttackDiceCount"]),
-            areTooManyDice() {
-                return this.getAttackDiceCount > diceService.MAX_ATTACK_DICE_COUNT;
+            ...mapGetters("dice", [
+                "noAttackDice",
+                "tooManyAttackDice"
+            ]),
+            noAttackDiceMessage() {
+                return "Please select at least 1 attack dice.";
             },
-            tooManyDiceMessage() {
-                return `Please select ${diceService.MAX_ATTACK_DICE_COUNT} attack dices or less.`;
+            tooManyAttackDiceMessage() {
+                return `Please select ${diceService.MAX_ATTACK_DICE_COUNT} attack dice or less.`;
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .error-messages {
-        color: red;
+    .messages {
+        position: relative;
+
+        .floating-message {
+            position: absolute;
+            top: -10px;
+        }
+
+        .error-message {
+            color: red;
+        }
     }
 </style>

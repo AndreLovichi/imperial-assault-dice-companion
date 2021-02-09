@@ -1,3 +1,5 @@
+import diceService from "../../services/dice";
+
 const state = {
     blackDiceCount: 0,
     blueDiceCount: 0,
@@ -32,6 +34,19 @@ const getters = {
                 throw Error("Invalid color");
         }
     },
+    isValidDiceCount: (state, getters) => {
+        return !getters.noAttackDice && !getters.tooManyAttackDice && !getters.tooManyDefenseDice;
+    },
+    noAttackDice: (state, getters) => {
+        return getters.getAttackDiceCount === 0;
+    },
+    tooManyAttackDice: (state, getters) => {
+        return getters.getAttackDiceCount > diceService.MAX_ATTACK_DICE_COUNT;
+    },
+    tooManyDefenseDice: (state, getters) => {
+        return getters.getDefenseDiceCount > diceService.MAX_DEFENSE_DICE_COUNT;
+    }
+
 }
 
 const mutations = {
