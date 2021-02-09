@@ -2,7 +2,7 @@
     <div class="dice-counter">
         <div
             class="dice-type"
-            :style="{'background-color': color, 'color': textColor}"
+            :style="{'background-color': color, 'border': border, 'color': textColor}"
         >
             {{ title }}
         </div>
@@ -42,6 +42,11 @@ export default {
             default: 0
         }
     },
+    computed: {
+        border() {
+            return this.color == "white" ? "1px solid black" : "none"
+        }
+    },
     data() {
         return {
             innerValue: this.value            
@@ -73,7 +78,7 @@ export default {
 
 <style lang="scss">
     .dice-counter {
-        width: 150px;
+        width: 200px;
 
         .dice-type {
             width: 80px;
@@ -85,6 +90,11 @@ export default {
             border-radius: 24px;
             text-align: center;
             line-height: 80px;
+        }
+
+        .v-input.v-text-field {
+            width: 150px;
+            margin: 0 auto;
         }
 
         &.v-input.primary--text .v-icon {

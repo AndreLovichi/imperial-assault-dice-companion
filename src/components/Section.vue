@@ -1,11 +1,9 @@
 <template>
     <div>
-        <v-row class="text-center mt-8">
+        <v-row class="mt-8">
             <Subtitle :text="title"/>
         </v-row>
-        <v-row class="text-center mt-8">
-            <slot></slot>
-        </v-row>
+        <slot></slot>
     </div>
 </template>
 
