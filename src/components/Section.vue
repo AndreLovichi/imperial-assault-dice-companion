@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-row class="mt-8">
+        <v-row class="mt-8 mb-3">
             <Subtitle :text="title"/>
         </v-row>
         <slot></slot>

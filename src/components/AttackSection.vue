@@ -1,48 +1,25 @@
 <template>
-    <Section title="Attack">
+    <Section title="Attack dices">
         <v-row>
-            <p>Select attack dices</p>
+            <DiceCounter color="blue" />
+            <DiceCounter color="green" />
+            <DiceCounter color="yellow" />
+            <DiceCounter color="red" />
         </v-row>
-
-        <v-row>
-            <DiceCounter
-                v-model="blueDiceCount"
-                color="#203f9a"
-                title="Blue"
-                textColor="white"
-                @input="updateDiceCounts"
-            />
-
-            <DiceCounter
-                v-model="greenDiceCount"
-                color="#008600"
-                title="Green"
-                textColor="white"
-                @input="updateDiceCounts"
-            />
-
-            <DiceCounter
-                v-model="yellowDiceCount"
-                color="#cbc200"
-                title="Yellow"
-                textColor="white"
-                @input="updateDiceCounts"
-            />
-
-            <DiceCounter
-                v-model="redDiceCount"
-                color="#b80f16"
-                title="Red"
-                textColor="white"
-                @input="updateDiceCounts"
-            />
+        <v-row class="error-messages">
+            <p v-if="areTooManyDice">
+                {{ tooManyDiceMessage }}
+            </p>
         </v-row>
     </Section>
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+
     import DiceCounter from "./DiceCounter.vue";
     import Section from "./Section.vue";
+    import diceService from "../services/dice";
 
     export default {
         components: {
@@ -50,28 +27,19 @@
             Section
         },
         computed: {
-            attackDice() {
-                return {
-                    blueDiceCount: this.blueDiceCount,
-                    greenDiceCount: this.greenDiceCount,
-                    redDiceCount: this.redDiceCount,
-                    yellowDiceCount: this.yellowDiceCount
-                }
-            }
-        },
-        data() {
-            return {
-                blueDiceCount: 0,
-                greenDiceCount: 0,
-                redDiceCount: 0,
-                yellowDiceCount: 0
-            };    
-        },
-        methods: {
-            updateDiceCounts() {
-                this.$emit("dice-counts-updated", this.attackDice);
+            ...mapGetters("dice", ["getAttackDiceCount"]),
+            areTooManyDice() {
+                return this.getAttackDiceCount > diceService.MAX_ATTACK_DICE_COUNT;
+            },
+            tooManyDiceMessage() {
+                return `Please select ${diceService.MAX_ATTACK_DICE_COUNT} attack dices or less.`;
             }
         }
-
     }
 </script>
+
+<style lang="scss" scoped>
+    .error-messages {
+        color: red;
+    }
+</style>

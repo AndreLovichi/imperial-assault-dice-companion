@@ -2,13 +2,13 @@
     <div class="dice-counter">
         <div
             class="dice-type"
-            :style="{'background-color': color, 'border': border, 'color': textColor}"
+            :style="style"
         >
-            {{ title }}
+            {{ colorSettings.label }}
         </div>
 
         <v-text-field
-            v-model="innerValue"
+            v-model="diceCount"
             append-outer-icon="mdi-plus-circle"
             dense
             outlined
@@ -21,56 +21,52 @@
 </template>
 
 <script>
-const MAX_DICE_COUNT = 5;
+import { mapMutations, mapGetters } from "vuex";
+import colorService from "../services/colors";
+import diceService from "../services/dice";
 
 export default {
     props: {
         color: {
             type: String,
-            default: "#203f9a"
-        },
-        textColor: {
-            type: String,
-            default: "white"
-        },
-        title: {
-            type: String,
-            default: "Blue"
-        },
-        value: {
-            type: Number,
-            default: 0
+            required: true
         }
     },
     computed: {
-        border() {
-            return this.color == "white" ? "1px solid black" : "none"
+        ...mapGetters("dice", ["getDiceCount"]),
+        style() {
+            return {
+                'background-color': this.colorSettings.backgroundColor,
+                'border': this.colorSettings.border,
+                'color': this.colorSettings.textColor
+            }
         }
     },
     data() {
         return {
-            innerValue: this.value            
+            colorSettings: colorService.getColorSettings(this.color),
+            diceCount: 0
         }
     },
-    watch: {
-        value: {
-            handler(newVal) {
-                this.innerValue = newVal;
-            }
-        }
+    created() {
+        this.diceCount = this.getDiceCount(this.color);
     },
     methods: {
+        ...mapMutations("dice", ["setDiceCount"]),
         decreaseDiceCount() {
-            if (this.innerValue == 0) { return; }
+            if (this.diceCount == 0) { return; }
 
-            this.innerValue--;
-            this.$emit("input", this.innerValue);
+            this.diceCount--;
+            this.updateDiceCount();
         },
         increaseDiceCount() {
-            if (this.innerValue == MAX_DICE_COUNT) { return; }
+            if (this.diceCount == diceService.MAX_DICE_COUNT) { return; }
 
-            this.innerValue++;
-            this.$emit("input", this.innerValue);
+            this.diceCount++;
+            this.updateDiceCount();
+        },
+        updateDiceCount() {
+            this.setDiceCount({ color: this.color, diceCount: this.diceCount });
         }
     }
 }

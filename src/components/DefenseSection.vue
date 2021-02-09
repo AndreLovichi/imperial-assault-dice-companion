@@ -1,25 +1,8 @@
 <template>
-    <Section title="Defense">
+    <Section title="Defense dices">
         <v-row>
-            <p>Select defense dices</p>
-        </v-row>
-
-        <v-row>
-            <DiceCounter
-                v-model="blackDiceCount"
-                color="black"
-                title="Black"
-                textColor="white"
-                @input="updateDiceCounts"
-            />
-
-            <DiceCounter
-                v-model="whiteDiceCount"
-                color="white"
-                title="White"
-                textColor="black"
-                @input="updateDiceCounts"
-            />
+            <DiceCounter color="black" />
+            <DiceCounter color="white" />
         </v-row>
     </Section>
 </template>
