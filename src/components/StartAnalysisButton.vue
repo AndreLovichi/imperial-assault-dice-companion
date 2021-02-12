@@ -5,6 +5,7 @@
         :disabled="isDisabled"
         dark
         x-large
+        @click.prevent="$emit('click')"
     >
         Start analysis
     </v-btn>

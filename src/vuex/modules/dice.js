@@ -2,7 +2,7 @@ import diceService from "../../services/dice";
 
 const state = {
     blackDiceCount: 0,
-    blueDiceCount: 0,
+    blueDiceCount: 2,
     greenDiceCount: 0,
     redDiceCount: 0,
     whiteDiceCount: 0,
@@ -10,11 +10,21 @@ const state = {
 }
 
 const getters = {
-    getAttackDiceCount: (state) => {
+    attackDiceCount: (state) => {
         return state.blueDiceCount + state.greenDiceCount + state.yellowDiceCount + state.redDiceCount;
     },
-    getDefenseDiceCount: (state) => {
+    defenseDiceCount: (state) => {
         return state.blackDiceCount + state.whiteDiceCount;
+    },
+    diceCounts: (state) => {
+        return {
+            blackDiceCount: state.blackDiceCount,
+            blueDiceCount: state.blueDiceCount,
+            greenDiceCount: state.greenDiceCount,
+            redDiceCount: state.redDiceCount,
+            whiteDiceCount: state.whiteDiceCount,
+            yellowDiceCount: state.yellowDiceCount,
+        }
     },
     getDiceCount: (state) => (color) => {
         switch(color) {
@@ -38,13 +48,13 @@ const getters = {
         return !getters.noAttackDice && !getters.tooManyAttackDice && !getters.tooManyDefenseDice;
     },
     noAttackDice: (state, getters) => {
-        return getters.getAttackDiceCount === 0;
+        return getters.attackDiceCount === 0;
     },
     tooManyAttackDice: (state, getters) => {
-        return getters.getAttackDiceCount > diceService.MAX_ATTACK_DICE_COUNT;
+        return getters.attackDiceCount > diceService.MAX_ATTACK_DICE_COUNT;
     },
     tooManyDefenseDice: (state, getters) => {
-        return getters.getDefenseDiceCount > diceService.MAX_DEFENSE_DICE_COUNT;
+        return getters.defenseDiceCount > diceService.MAX_DEFENSE_DICE_COUNT;
     }
 
 }

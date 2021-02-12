@@ -1,27 +1,21 @@
 <template>
     <v-container>
         <AttackSection />
-
         <DefenceSection />
-
-        <Section title="Analysis">
-            <StartAnalysisButton />
-        </Section>
+        <AnalysisSection />
     </v-container>
 </template>
 
 <script>
+    import AnalysisSection from "./AnalysisSection.vue";
     import AttackSection from "./AttackSection.vue";
     import DefenceSection from "./DefenseSection.vue";
-    import Section from "./Section.vue";
-    import StartAnalysisButton from "./StartAnalysisButton";
 
     export default {
         components: {
+            AnalysisSection,
             AttackSection,
-            DefenceSection,
-            Section,
-            StartAnalysisButton
+            DefenceSection
         }
     }
 </script>
