@@ -1,3 +1,0 @@
-export const MAX_ATTACK_DICE_COUNT = 5;
-export const MAX_DEFENSE_DICE_COUNT = 3;
-export const MAX_DICE_COUNT = Math.max(MAX_ATTACK_DICE_COUNT, MAX_DEFENSE_DICE_COUNT);
