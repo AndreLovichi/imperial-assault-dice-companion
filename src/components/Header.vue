@@ -11,7 +11,7 @@
                 alt="IADC Logo"
                 class="shrink mr-2"
                 contain
-                src="/images/site-logo.png"
+                :src="require('@/assets/images/site-logo.png')"
                 transition="scale-transition"
                 width="32"
                 heigth="32"
