@@ -1,39 +1,70 @@
 <template>
     <Section title="Analysis">
-        <StartAnalysisButton @click="startAnalysis" />
-        <JsonViewer :jsonData="jsonData" />
+        <StartAnalysisButton
+            v-if="! showResults"
+            @click="runAnalysis"
+        />
+        <template v-else>
+            <ResultBlock
+                class="mb-8"
+                title="Damage"
+                :results="results.damage"
+            />
+            <ResultBlock
+                class="mb-8"
+                title="Surge"
+                :results="results.surge"
+            />
+            <ResultBlock
+                class="mb-8"
+                title="Accuracy"
+                :results="results.accuracy"
+            />
+        </template>
     </Section>
 </template>
 
 <script>
     import { mapGetters } from "vuex";
 
-    import JsonViewer from "./JsonViewer.vue";
+    import ResultBlock from "./ResultsBlock.vue"
     import Section from "./Section.vue";
     import StartAnalysisButton from "./StartAnalysisButton";
     import analysisService from "../services/analysis";
 
     export default {
         components: {
-            JsonViewer,
+            ResultBlock,
             Section,
             StartAnalysisButton
         },
         computed: {
             ...mapGetters("dice", [
                 "diceCounts"
-            ])
+            ]),
+            showResults() {
+                return !! this.results;
+            }
         },
         data() {
             return {
-                jsonData: {}
+                results: null
+            }
+        },
+        watch: {
+            diceCounts: {
+                immediate: true,
+                handler(){
+                    this.resetResults();
+                }
             }
         },
         methods: {
-            startAnalysis() {
-                console.log("Start analysis");
-                const allCases = analysisService.runAnalysis(this.diceCounts);
-                this.jsonData = { 'allCases': allCases };
+            resetResults() {
+                this.results = null;
+            },
+            runAnalysis() {
+                this.results = analysisService.runAnalysis(this.diceCounts);
             }
         }
     }

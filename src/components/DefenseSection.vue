@@ -25,9 +25,6 @@
     import Section from "./Section.vue";
     import diceService from "../services/dice";
 
-    const test = diceService.computeAllCases(["red", "red", "red", "black", "black"]);
-    console.log(test.slice(0, 10));
-
     export default {
         components: {
             DiceCounter,
