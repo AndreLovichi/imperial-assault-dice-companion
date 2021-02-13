@@ -23,6 +23,12 @@
                 :results="results.accuracy"
                 title="Accuracy"
             />
+            <ResultBlock
+                class="mb-8"
+                icon="icon-dodge"
+                :results="results.dodge"
+                title="Dodge"
+            />
         </template>
     </Section>
 </template>

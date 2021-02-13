@@ -2,6 +2,7 @@ export function computeDistributions(cases) {
     const damageDistribution = {};
     const surgeDistribution = {};
     const accuracyDistribution = {};
+    const dodgeDistribution = {};
 
     for (let i = 0; i < cases.length; i++) {
         const currentCase = cases[i];
@@ -14,11 +15,15 @@ export function computeDistributions(cases) {
 
         const accuracy = currentCase.accuracy;
         accuracyDistribution[accuracy] = 1 + (accuracyDistribution[accuracy] || 0);
+
+        const dodge = currentCase.dodge ? 1 : 0;
+        dodgeDistribution[dodge] = 1 + (dodgeDistribution[dodge] || 0);
     }
 
     return {
         accuracyDistribution,
         damageDistribution,
+        dodgeDistribution,
         surgeDistribution
     };
 }
