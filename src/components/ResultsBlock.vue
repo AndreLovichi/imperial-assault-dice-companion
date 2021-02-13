@@ -1,6 +1,13 @@
 <template>
     <div>
+        <VerticalResultTable
+            v-if="isMobile"
+            :icon="icon"
+            :results="results"
+            :title="title"
+        />
         <HorizontalResultTable
+            v-else
             :icon="icon"
             :results="results"
             :title="title"
@@ -13,13 +20,15 @@
 </template>
 
 <script>
-    import JsonViewer from "./JsonViewer.vue";
     import HorizontalResultTable from "./HorizontalResultTable.vue";
+    import JsonViewer from "./JsonViewer.vue";
+    import VerticalResultTable from "./VerticalResultTable.vue";
 
     export default {
         components: {
             HorizontalResultTable,
             JsonViewer,
+            VerticalResultTable
         },
         props: {
             debug: {
@@ -40,6 +49,9 @@
             }
         },
         computed: {
+            isMobile() {
+                return this.$vuetify.breakpoint.xsOnly;
+            },
             jsonData() {
                 return {
                     results: this.results
