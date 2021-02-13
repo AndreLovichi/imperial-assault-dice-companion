@@ -48,12 +48,6 @@
         }
 
         .v-application .title {
-            font-size: 1.5rem !important;
-        }
-    }
-    
-    @media only screen and (max-width : 600px) {
-        .v-application .title {
             font-size: 1.3rem !important;
         }
     }

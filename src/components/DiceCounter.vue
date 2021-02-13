@@ -1,5 +1,9 @@
 <template>
-    <div class="dice-counter">
+    <v-col
+        class="dice-counter"
+        :cols="6"
+        :sm="3"
+    >
         <div
             class="dice-type"
             :style="style"
@@ -18,7 +22,7 @@
             @click:prepend="decreaseDiceCount"
             @click:append-outer="increaseDiceCount"
         />
-    </div>
+    </v-col>
 </template>
 
 <script>
@@ -75,7 +79,6 @@ export default {
 
 <style lang="scss">
     .dice-counter {
-        width: 200px;
 
         .dice-type {
             width: 80px;
@@ -113,6 +116,13 @@ export default {
         .v-icon:hover,
         &.v-input.primary--text .v-icon:hover {
             color: rgb(83, 167, 235);
+        }
+    }
+
+    
+    @media only screen and (max-width : 600px) {
+        .dice-counter .v-input__slot input {
+            font-size: 24px;
         }
     }
 </style>

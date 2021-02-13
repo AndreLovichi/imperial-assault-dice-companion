@@ -39,4 +39,15 @@ export default {
             margin: 0 auto !important;
         }
     }
+
+    @media only screen and (max-width : 350px) {
+    .v-btn {
+        font-family: "STARWARS", "Roboto" !important;
+        font-size: 1.3em;
+
+        &.v-btn:not(.v-btn--round).v-size--x-large {
+            padding: 20px;
+        }
+    }
+    }
 </style>

@@ -4,7 +4,7 @@
         title="Attack dices"
     >
         <v-row class="dice-counters">
-            <DiceCounter color="blue" />
+            <DiceCounter color="blue"/>
             <DiceCounter color="green" />
             <DiceCounter color="yellow" />
             <DiceCounter color="red" />
@@ -54,6 +54,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .dice-counters {
+        max-width: 800px;
+    }
+
     .messages {
         position: relative;
 

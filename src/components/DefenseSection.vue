@@ -42,6 +42,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .dice-counters {
+        max-width: 800px;
+    }
+
     .messages {
         position: relative;
 
