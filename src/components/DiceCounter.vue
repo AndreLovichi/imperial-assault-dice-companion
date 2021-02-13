@@ -7,6 +7,7 @@
         <div
             class="dice-type"
             :style="style"
+            @click="increaseDiceCount"
         >
             {{ colorSettings.label }}
         </div>
@@ -91,7 +92,11 @@ export default {
             text-align: center;
             line-height: 80px;
 
-            cursor: default;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0px 0px 15px grey;                
+            }
         }
 
         .v-input.v-text-field {
