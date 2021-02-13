@@ -4,6 +4,10 @@
             <thead>
                 <tr>
                     <th class="table-title first-column">
+                        <i
+                            class="zmdi"
+                            :class="icon"
+                        />
                         {{ title }}
                     </th>
                     <th
@@ -55,6 +59,10 @@
             JsonViewer,
         },
         props: {
+            icon: {
+                type: String,
+                required: true,
+            },
             results: {
                 type: Array,
                 required: true
@@ -97,6 +105,10 @@
 
         th:not(.first-column), td:not(.first-column) {
             width: 60px;
+        }
+
+        .table-title i {
+            font-size: 1.1rem;
         }
 
     }

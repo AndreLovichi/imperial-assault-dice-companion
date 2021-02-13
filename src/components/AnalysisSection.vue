@@ -7,18 +7,21 @@
         <template v-else>
             <ResultBlock
                 class="mb-8"
-                title="Damage"
+                icon="icon-damage"
                 :results="results.damage"
+                title="Damage"
             />
             <ResultBlock
                 class="mb-8"
-                title="Surge"
+                icon="icon-surge"
                 :results="results.surge"
+                title="Surge"
             />
             <ResultBlock
                 class="mb-8"
-                title="Accuracy"
+                icon="icon-ranged"
                 :results="results.accuracy"
+                title="Accuracy"
             />
         </template>
     </Section>
