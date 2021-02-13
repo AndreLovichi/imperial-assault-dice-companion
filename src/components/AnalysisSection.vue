@@ -25,6 +25,7 @@
             />
             <ResultBlock
                 class="mb-8"
+                hideRunningPercentage
                 icon="icon-dodge"
                 :results="results.dodge"
                 title="Dodge"

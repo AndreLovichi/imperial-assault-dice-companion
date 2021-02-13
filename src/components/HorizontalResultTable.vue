@@ -30,7 +30,7 @@
                         {{ item.percentage }}
                     </td>
                 </tr>
-                <tr>
+                <tr v-if="! hideRunningPercentage">
                     <td class="first-column">
                         % (at least)
                     </td>
@@ -50,6 +50,10 @@
 <script>
     export default {
         props: {
+            hideRunningPercentage: {
+                type: Boolean,
+                default: false
+            },
             icon: {
                 type: String,
                 required: true,

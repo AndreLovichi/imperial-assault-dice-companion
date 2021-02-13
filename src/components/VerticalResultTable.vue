@@ -13,7 +13,7 @@
                     <th>
                         %<sub>exact</sub>
                     </th>
-                    <th>
+                    <th v-if="! hideRunningPercentage">
                         %<sub>at least</sub>
                     </th>
                 </tr>
@@ -29,7 +29,7 @@
                     <td>
                         {{ item.percentage }}
                     </td>
-                    <td>
+                    <td v-if="! hideRunningPercentage">
                         {{ item.runningPercentage }}
                     </td>
                 </tr>
@@ -41,6 +41,10 @@
 <script>
     export default {
         props: {
+            hideRunningPercentage: {
+                type: Boolean,
+                default: false
+            },
             icon: {
                 type: String,
                 required: true,

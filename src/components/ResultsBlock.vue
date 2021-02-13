@@ -2,12 +2,14 @@
     <div>
         <VerticalResultTable
             v-if="isMobile"
+            :hideRunningPercentage="hideRunningPercentage"
             :icon="icon"
             :results="results"
             :title="title"
         />
         <HorizontalResultTable
             v-else
+            :hideRunningPercentage="hideRunningPercentage"
             :icon="icon"
             :results="results"
             :title="title"
@@ -32,6 +34,10 @@
         },
         props: {
             debug: {
+                type: Boolean,
+                default: false
+            },
+            hideRunningPercentage: {
                 type: Boolean,
                 default: false
             },
