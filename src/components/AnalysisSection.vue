@@ -1,5 +1,8 @@
 <template>
-    <Section title="Analysis">
+    <Section
+        title="Analysis"
+        class="analysis-section"
+    >
         <StartAnalysisButton
             v-if="! showResults"
             @click="runAnalysis"
@@ -79,3 +82,11 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    @media only screen and (max-width : 600px) {
+        .analysis-section {
+            text-align: center;
+        }
+    }
+</style>

@@ -33,4 +33,10 @@ export default {
             padding: 30px;
         }
     }
+
+    @media only screen and (max-width : 600px) {
+        .subtitle {
+            margin: 0 auto !important;
+        }
+    }
 </style>

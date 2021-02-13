@@ -1,8 +1,8 @@
 <template>
     <div>
-        <v-row class="mt-8 mb-3">
+        <v-row class="mt-2 mb-2">
             <Subtitle
-                class="subtitle"
+                class="subtitle ml-4"
                 :text="title"
             />
         </v-row>
@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
     @media only screen and (max-width : 600px) {
         .subtitle {
-            padding-left: 20px;
+            margin: 0 auto !important;
         }
     }
 </style>
