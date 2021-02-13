@@ -3,7 +3,7 @@
         class="mb-12"
         title="Attack dices"
     >
-        <v-row>
+        <v-row class="dice-counters">
             <DiceCounter color="blue" />
             <DiceCounter color="green" />
             <DiceCounter color="yellow" />
@@ -64,6 +64,12 @@
 
         .error-message {
             color: red;
+        }
+    }
+
+    @media only screen and (max-width : 600px) {
+        .dice-counters, .messages {
+            justify-content: center;
         }
     }
 </style>

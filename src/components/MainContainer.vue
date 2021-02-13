@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="main-container">
         <AttackSection />
         <DefenceSection />
         <AnalysisSection />
@@ -19,3 +19,10 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .main-container {
+        margin: 0;
+        padding: 20px;
+    }
+</style>

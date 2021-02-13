@@ -3,7 +3,7 @@
         class="mb-12"
         title="Defense dices"
     >
-        <v-row>
+        <v-row class="dice-counters">
             <DiceCounter color="black" />
             <DiceCounter color="white" />
         </v-row>
@@ -35,7 +35,7 @@
                 "tooManyDefenseDice"
             ]),
             tooManyDefenseDiceMessage() {
-                return `Please select ${diceService.MAX_ATTACK_DICE_COUNT} attack dice or less.`;
+                return `Please select ${diceService.MAX_DEFENSE_DICE_COUNT} defense dice or less.`;
             }
         }
     }
@@ -54,4 +54,11 @@
             color: red;
         }
     }
+    
+    @media only screen and (max-width : 600px) {
+        .dice-counters, .messages {
+            justify-content: center;
+        }
+    }
+
 </style>

@@ -1,7 +1,10 @@
 <template>
     <div>
         <v-row class="mt-8 mb-3">
-            <Subtitle :text="title"/>
+            <Subtitle
+                class="subtitle"
+                :text="title"
+            />
         </v-row>
         <slot></slot>
     </div>
@@ -22,3 +25,11 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    @media only screen and (max-width : 600px) {
+        .subtitle {
+            padding-left: 20px;
+        }
+    }
+</style>
