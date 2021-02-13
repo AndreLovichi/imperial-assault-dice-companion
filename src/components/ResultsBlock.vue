@@ -83,8 +83,10 @@
 </script>
 
 <style lang="scss" scoped>
+    $border-radius: 20px;
+
     .result-table {
-        border-collapse: collapse;
+        border-spacing: 0;
         font-size: 1.4em;
         text-align: center;
 
@@ -92,15 +94,21 @@
             font-family: "STARWARS", "Roboto" !important;
             text-transform: uppercase;
             font-weight: normal;
+            background-color: #cce0f5;
+            padding: 9px 5px 4px;
+        }
+
+        td {
+            padding: 5px;
         }
 
         th, td {
-            padding: 5px;
             border: 1px solid lightgrey;
         }
 
         th.first-column , td.first-column {
-            padding: 5px 30px;
+            padding-left: 30px;
+            padding-right: 30px;
         }
 
         th:not(.first-column), td:not(.first-column) {
@@ -111,5 +119,20 @@
             font-size: 1.1rem;
         }
 
+        tr:first-child th:first-child {
+            border-top-left-radius: $border-radius;
+        }
+
+        tr:first-child th:last-child {
+            border-top-right-radius: $border-radius;
+        }
+
+        tr:last-child td:first-child {
+            border-bottom-left-radius: $border-radius;
+        }
+
+        tr:last-child td:last-child {
+            border-bottom-right-radius: $border-radius;
+        }
     }
 </style>

@@ -15,7 +15,6 @@ export function runAnalysis(diceCounts) {
     };
 
     function renameDodgeResults(dodgeResults) {
-        console.log(dodgeResults);
         return {
             ...dodgeResults,
             value: dodgeResults.value ? "Yes" : "No"
