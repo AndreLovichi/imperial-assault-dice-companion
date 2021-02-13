@@ -78,6 +78,7 @@
             },
             runAnalysis() {
                 this.results = analysisService.runAnalysis(this.diceCounts);
+                this.$vuetify.goTo(".analysis-section");
             }
         }
     }
