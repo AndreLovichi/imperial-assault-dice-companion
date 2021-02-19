@@ -33,6 +33,9 @@
                 :results="results.dodge"
                 title="Dodge"
             />
+            <SwitchModeButton 
+                :mode.sync="mode"
+            />
         </template>
     </Section>
 </template>
@@ -43,13 +46,15 @@
     import ResultBlock from "./ResultsBlock.vue"
     import Section from "./Section.vue";
     import StartAnalysisButton from "./StartAnalysisButton";
+    import SwitchModeButton from "./SwitchModeButton";
     import analysisService from "../services/analysis";
 
     export default {
         components: {
             ResultBlock,
             Section,
-            StartAnalysisButton
+            StartAnalysisButton,
+            SwitchModeButton
         },
         computed: {
             ...mapGetters("dice", [
@@ -61,7 +66,8 @@
         },
         data() {
             return {
-                results: null
+                mode: "normal",
+                results: null,
             }
         },
         watch: {
