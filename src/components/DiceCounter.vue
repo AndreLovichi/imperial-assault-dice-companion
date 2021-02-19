@@ -12,26 +12,25 @@
             {{ colorSettings.label }}
         </div>
 
-        <v-text-field
+        <StepCounter
             v-model="diceCount"
-            append-outer-icon="mdi-plus-circle"
-            dense
-            outlined
-            prepend-icon="mdi-minus-circle"
-            readonly
-            rounded
-            @click:prepend="decreaseDiceCount"
-            @click:append-outer="increaseDiceCount"
+            @decrease="decreaseDiceCount"
+            @increase="increaseDiceCount"
         />
     </v-col>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from "vuex";
+
+import StepCounter from "./StepCounter.vue"
 import colorService from "../services/colors";
 import diceService from "../services/dice";
 
 export default {
+    components: {
+        StepCounter
+    },
     props: {
         color: {
             type: String,
@@ -97,37 +96,6 @@ export default {
             &:hover {
                 box-shadow: 0px 0px 15px grey;                
             }
-        }
-
-        .v-input.v-text-field {
-            width: 150px;
-            margin: 0 auto;
-        }
-
-        &.v-input.primary--text .v-icon {
-            color: rgba(0, 0, 0, 0.54) !important;
-        }
-
-        .v-input__prepend-outer button,
-        .v-input__append-outer button {
-            font-size: 40px;
-        }
-
-        .v-input__slot input {
-            font-size: 32px;
-            text-align: center;
-        }
-
-        .v-icon:hover,
-        &.v-input.primary--text .v-icon:hover {
-            color: rgb(83, 167, 235);
-        }
-    }
-
-    
-    @media only screen and (max-width : 600px) {
-        .dice-counter .v-input__slot input {
-            font-size: 24px;
         }
     }
 </style>
