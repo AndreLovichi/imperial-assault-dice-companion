@@ -1,8 +1,6 @@
 <template>
     <v-btn
         rounded
-        :disabled="isDisabled"
-        @click.prevent="toggleMode"
     >
         {{ label }}
     </v-btn>
@@ -13,17 +11,13 @@ export default {
     props: {
         mode: {
             type: String,
-            required: true
+            required: true,
+            validator: (m) => ["normal", "advanced"].includes(m)
         }
     },
     computed: {
         label() {
             return this.mode === "normal" ? "Advanced mode" : "Normal mode"
-        }
-    },
-    methods: {
-        toggleMode() {
-            this.mode = this.mode === "normal" ? "advanced" : "normal"
         }
     }
 }

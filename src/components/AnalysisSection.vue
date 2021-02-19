@@ -9,10 +9,17 @@
         />
         <template v-else>
             <NormalAnalysis
+                v-if="isNormalMode"
                 :distributions="results.distributions"
             />
+            <AdvancedAnalysis
+                v-else
+                :allCases="results.allCases"
+            />
+
             <SwitchModeButton 
-                :mode.sync="mode"
+                :mode="mode"
+                @click.native="toggleMode"
             />
         </template>
     </Section>
@@ -21,6 +28,7 @@
 <script>
     import { mapGetters } from "vuex";
 
+    import AdvancedAnalysis from "./AdvancedAnalysis.vue"
     import NormalAnalysis from "./NormalAnalysis.vue"
     import Section from "./Section.vue";
     import StartAnalysisButton from "./StartAnalysisButton";
@@ -29,6 +37,7 @@
 
     export default {
         components: {
+            AdvancedAnalysis,
             NormalAnalysis,
             Section,
             StartAnalysisButton,
@@ -38,13 +47,16 @@
             ...mapGetters("dice", [
                 "diceCounts"
             ]),
+            isNormalMode() {
+                return this.mode === "normal"
+            },
             showResults() {
                 return !! this.results;
             }
         },
         data() {
             return {
-                mode: "normal",
+                mode: "advanced",
                 results: null,
             }
         },
@@ -62,6 +74,10 @@
             },
             runAnalysis() {
                 this.results = analysisService.runAnalysis(this.diceCounts);
+                this.$vuetify.goTo(".analysis-section");
+            },
+            toggleMode() {
+                this.mode = this.mode === "normal" ? "advanced" : "normal";
                 this.$vuetify.goTo(".analysis-section");
             }
         }
