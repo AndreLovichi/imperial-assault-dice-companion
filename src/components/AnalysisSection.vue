@@ -8,30 +8,8 @@
             @click="runAnalysis"
         />
         <template v-else>
-            <ResultBlock
-                class="mb-8"
-                icon="icon-damage"
-                :results="results.damage"
-                title="Damage"
-            />
-            <ResultBlock
-                class="mb-8"
-                icon="icon-surge"
-                :results="results.surge"
-                title="Surge"
-            />
-            <ResultBlock
-                class="mb-8"
-                icon="icon-ranged"
-                :results="results.accuracy"
-                title="Accuracy"
-            />
-            <ResultBlock
-                class="mb-8"
-                hideRunningPercentage
-                icon="icon-dodge"
-                :results="results.dodge"
-                title="Dodge"
+            <NormalAnalysis
+                :distributions="results.distributions"
             />
             <SwitchModeButton 
                 :mode.sync="mode"
@@ -43,7 +21,7 @@
 <script>
     import { mapGetters } from "vuex";
 
-    import ResultBlock from "./ResultsBlock.vue"
+    import NormalAnalysis from "./NormalAnalysis.vue"
     import Section from "./Section.vue";
     import StartAnalysisButton from "./StartAnalysisButton";
     import SwitchModeButton from "./SwitchModeButton";
@@ -51,7 +29,7 @@
 
     export default {
         components: {
-            ResultBlock,
+            NormalAnalysis,
             Section,
             StartAnalysisButton,
             SwitchModeButton
