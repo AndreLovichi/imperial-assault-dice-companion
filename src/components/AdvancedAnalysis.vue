@@ -63,7 +63,7 @@ export default {
     },
     data() {
         return {
-            debug: false,
+            debug: true,
             results: null
         }
     },
@@ -76,6 +76,8 @@ export default {
                 cases: this.allCases,
                 minAccuracy: this.minAccuracy
             })
+            advancedAnalysis.damageValues.push("Total");
+            advancedAnalysis.surgeValues.push("Total");
             this.results = advancedAnalysis;
         }
     }

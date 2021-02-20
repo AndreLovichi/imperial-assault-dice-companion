@@ -12,7 +12,7 @@
                         v-for="damageCount in damageValues"
                         :key=damageCount
                     >
-                        {{ damageCount }}
+                        {{ getCellLabel(damageCount) }}
                     </td>
                 </tr>
 
@@ -20,7 +20,7 @@
                     v-for="surgeCount in surgeValues"
                     :key="surgeCount"
                 >
-                    <td>{{ surgeCount }}</td>                    
+                    <td>{{ getCellLabel(surgeCount) }}</td>                    
                     <td
                         v-for="damageCount in damageValues"
                         :key=damageCount
@@ -51,6 +51,9 @@ export default {
         }
     },
     methods: {
+        getCellLabel(rawLabel) {
+            return (rawLabel === "Total") ? "Σ" : rawLabel;
+        },
         getCellValue(damageCount, surgeCount) {
             if (! this.damageAndSurgeDistribution || ! this.damageAndSurgeDistribution[damageCount] || ! this.damageAndSurgeDistribution[damageCount][surgeCount]) {
                 return 0;
@@ -106,6 +109,11 @@ export default {
             font-weight: normal;
             background-color: #cce0f5;
             padding: 9px 5px 4px;
+        }
+
+        tr td:last-child,
+        tr:last-child td {
+            font-weight: bold;
         }
 
         td {
