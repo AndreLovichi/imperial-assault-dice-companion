@@ -2,7 +2,7 @@ import diceService from "../../services/dice";
 
 const state = {
     blackDiceCount: 0,
-    blueDiceCount: 2,
+    blueDiceCount: 0,
     greenDiceCount: 0,
     redDiceCount: 0,
     whiteDiceCount: 0,

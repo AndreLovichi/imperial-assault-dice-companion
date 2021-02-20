@@ -56,7 +56,7 @@
         },
         data() {
             return {
-                mode: "advanced",
+                mode: "normal",
                 results: null,
             }
         },
