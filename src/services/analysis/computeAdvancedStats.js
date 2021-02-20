@@ -31,8 +31,6 @@ export function computeAdvancedStats({
         }
     }
 
-    console.log(surgeCaseCounts);
-
     for (let i = 0; i < damageValues.length; i++) {
         const damageCount = damageValues[i];
         damageAndSurgeDistribution[damageCount]["Total"] = computeRoundedValue(damageCaseCounts[damageCount] / casesCount);
