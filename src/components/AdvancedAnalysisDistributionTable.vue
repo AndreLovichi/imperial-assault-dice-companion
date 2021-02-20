@@ -24,6 +24,7 @@
                     <td
                         v-for="damageCount in damageValues"
                         :key=damageCount
+                        :class="{ 'irrelevant-value': ! containsRelevantValue(damageCount, surgeCount) }"
                     >
                         {{ getCellValue(damageCount, surgeCount) }}
                     </td>
@@ -56,6 +57,9 @@ export default {
             } else {
                 return this.damageAndSurgeDistribution[damageCount][surgeCount];
             }
+        },
+        containsRelevantValue(damageCount, surgeCount) {
+            return this.getCellValue(damageCount, surgeCount) > 0;
         }
     }
 }
@@ -102,15 +106,6 @@ export default {
             padding: 9px 5px 4px;
         }
 
-        .first-row {
-            font-family: "STARWARS", "Roboto" !important;
-            text-transform: uppercase;
-            font-weight: normal;
-            background-color: #cce0f5;
-            padding: 9px 5px 4px;
-            width: 150px;
-        }
-
         td {
             padding: 5px;
             border: 1px solid lightgrey;
@@ -118,6 +113,10 @@ export default {
 
         td:not(.first-column) {
             width: 60px;
+        }
+
+        td.irrelevant-value {
+            color: lightgrey;
         }
 
         tr:first-child td:first-child {

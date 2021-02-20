@@ -23,6 +23,7 @@
         </template>
 
         <JsonViewer
+            v-if="debug"
             :jsonData="jsonData"
         />
     </div>
@@ -62,6 +63,7 @@ export default {
     },
     data() {
         return {
+            debug: false,
             results: null
         }
     },
