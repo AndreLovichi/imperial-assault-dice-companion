@@ -31,7 +31,7 @@ export function computeAdvancedStats({
 
     function computeRoundedValue(rawValue) {
         let roundedValue = Math.round(rawValue * 1000) / 10;
-        if (roundedValue >= 10) {
+        if (roundedValue >= 1) {
             roundedValue = Math.round(roundedValue);
         }
         return roundedValue;

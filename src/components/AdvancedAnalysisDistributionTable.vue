@@ -59,7 +59,7 @@ export default {
             }
         },
         containsRelevantValue(damageCount, surgeCount) {
-            return this.getCellValue(damageCount, surgeCount) > 0;
+            return this.getCellValue(damageCount, surgeCount) >= 1;
         }
     }
 }
