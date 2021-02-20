@@ -63,7 +63,7 @@ export default {
     },
     data() {
         return {
-            debug: true,
+            debug: false,
             results: null
         }
     },
