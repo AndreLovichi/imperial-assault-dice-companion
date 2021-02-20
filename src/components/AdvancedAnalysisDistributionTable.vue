@@ -73,6 +73,8 @@ export default {
         font-size: 1.4em;
         text-align: center;
 
+        padding-right: 20px;
+
         .title-cell {
             position: relative;
             
@@ -109,10 +111,7 @@ export default {
         td {
             padding: 5px;
             border: 1px solid lightgrey;
-        }
-
-        td:not(.first-column) {
-            width: 60px;
+            min-width: 60px;
         }
 
         td.irrelevant-value {

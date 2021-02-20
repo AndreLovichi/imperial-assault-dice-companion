@@ -10,6 +10,8 @@
 
         <v-col
             :cols="6"
+            offset="3"
+            offset-sm="0"
             :sm="3"
         >
             <StepCounter
