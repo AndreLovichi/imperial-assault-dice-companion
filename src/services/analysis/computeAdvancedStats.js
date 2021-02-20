@@ -43,7 +43,7 @@ export function computeAdvancedStats({
         const surgeCount = surgeValues[j];
         damageAndSurgeDistribution["Total"][surgeCount] = computeRoundedValue(surgeCaseCounts[surgeCount] / casesCount);
     }
-    damageAndSurgeDistribution["Total"]["Total"] = 100;
+    damageAndSurgeDistribution["Total"]["Total"] = Math.round(hitRatio);
 
 
     return {
