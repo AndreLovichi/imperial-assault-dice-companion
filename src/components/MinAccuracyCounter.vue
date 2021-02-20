@@ -13,7 +13,7 @@
             :sm="3"
         >
             <StepCounter
-                :value="innerValue"
+                :value="minAccuracy"
                 @decrease="decreaseMinAccuracy"
                 @increase="increaseMinAccuracy"
             />
@@ -22,38 +22,32 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex"
+
 import StepCounter from "./StepCounter.vue"
 
 export default {
     components: {
         StepCounter
     },
-    props: {
-        value: {
-            type: Number,
-            required: true
-        }
-    },
-    data() {
-        return {
-            innerValue: this.value
-        }
+    computed: {
+        ...mapState("accuracy", ["minAccuracy"])
     },
     methods: {
+        ...mapMutations("accuracy", ["setMinAccuracy"]),
         decreaseMinAccuracy() {
-            if (this.innerValue == 0) { return; }
+            if (this.minAccuracy == 0) { return; }
 
-            this.innerValue--;
-            this.updateMinAccuracy();
+            this.updateMinAccuracy(this.minAccuracy - 1);
         },
         increaseMinAccuracy() {
             if (this.innerValue == 10) { return; }
 
-            this.innerValue++;
-            this.updateMinAccuracy();
+            this.updateMinAccuracy(this.minAccuracy + 1);
         },
-        updateMinAccuracy() {
-            this.$emit("input", this.innerValue);
+        updateMinAccuracy(newMinAccuracy) {
+            this.setMinAccuracy(newMinAccuracy);
+            this.$emit("min-accuracy-changed");
         }
 
     }

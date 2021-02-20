@@ -10,7 +10,7 @@ export function computeAdvancedAnalysis({ cases, minAccuracy }) {
         surgeValues
     } = computeAdvancedDistribution({ cases, minAccuracy });
 
-    const { damageAndSurgeMatrix, dodgeRatio, insufficientAccuracyRatio } = computeAdvancedStats({
+    const { damageAndSurgeDistribution, dodgeRatio, hitRatio, insufficientAccuracyRatio } = computeAdvancedStats({
         casesCount: cases.length,
         damageValues,
         distribution,
@@ -20,9 +20,10 @@ export function computeAdvancedAnalysis({ cases, minAccuracy }) {
     });
 
     return {
-        damageAndSurgeMatrix,
+        damageAndSurgeDistribution,
         damageValues,
         dodgeRatio,
+        hitRatio,
         insufficientAccuracyRatio,
         surgeValues
     }

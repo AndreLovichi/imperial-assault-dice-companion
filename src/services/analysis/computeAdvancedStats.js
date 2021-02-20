@@ -8,22 +8,24 @@ export function computeAdvancedStats({
 }) {
     const dodgeRatio = Math.round(dodgeCount * 100 / casesCount);
     const insufficientAccuracyRatio = Math.round(insufficientAccuracyCount * 100 / casesCount);
+    const hitRatio = 100 - (dodgeRatio + insufficientAccuracyRatio);
 
-    const damageAndSurgeMatrix = [];
+    const damageAndSurgeDistribution = {};
     for (let i = 0; i < damageValues.length; i++) {
         const damageCount = damageValues[i];
-        damageAndSurgeMatrix[i] = [];
+        damageAndSurgeDistribution[i] = {};
 
         for (let j = 0; j < surgeValues.length; j++) {
             const surgeCount = surgeValues[j];
             const currentCaseCount = (distribution[damageCount] && distribution[damageCount][surgeCount]) || 0;
-            damageAndSurgeMatrix[i][j] = Math.round(currentCaseCount * 100 / casesCount);
+            damageAndSurgeDistribution[i][j] = Math.round(currentCaseCount * 100 / casesCount);
         }
     }
 
     return {
-        damageAndSurgeMatrix,
+        damageAndSurgeDistribution,
         dodgeRatio,
+        hitRatio,
         insufficientAccuracyRatio,
     }
 }

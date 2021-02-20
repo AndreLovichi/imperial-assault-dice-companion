@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-ranged-hit:before {
+  content: "\e905";
+}
+.icon-ranged-miss:before {
+  content: "\e906";
+}
 .icon-damage:before {
   content: "\e900";
 }

@@ -1,9 +1,26 @@
 <template>
     <div>
         <MinAccuracyCounter
-            v-model="minAccuracy"
-            @input="runAdvancedAnalysis"
+            @min-accuracy-changed="runAdvancedAnalysis"
         />
+
+        <template v-if="results">
+            <AdvancedAnalysisMainTable
+                class="mb-8"
+                :dodgeRatio="results.dodgeRatio"
+                :hitRatio="results.hitRatio"
+                :insufficientAccuracyRatio="results.insufficientAccuracyRatio"
+            />
+
+            <AdvancedAnalysisDistributionTable
+                v-if="canHit"
+                class="mb-8"
+                :damageAndSurgeDistribution="results.damageAndSurgeDistribution"
+                :damageValues="results.damageValues"
+                :surgeValues="results.surgeValues"
+            />
+
+        </template>
 
         <JsonViewer
             :jsonData="jsonData"
@@ -12,12 +29,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
+import AdvancedAnalysisDistributionTable from "./AdvancedAnalysisDistributionTable.vue"
+import AdvancedAnalysisMainTable from "./AdvancedAnalysisMainTable.vue"
 import MinAccuracyCounter from "./MinAccuracyCounter.vue"
 import JsonViewer from './JsonViewer.vue'
 import analysisService from "../services/analysis"
 
 export default {
     components: {
+        AdvancedAnalysisDistributionTable,
+        AdvancedAnalysisMainTable,
         MinAccuracyCounter,
         JsonViewer
     },
@@ -27,10 +50,19 @@ export default {
             required: true
         }
     },
+    computed: {
+        ...mapState("accuracy", ["minAccuracy"]),
+        canHit() {
+            return this.results && (this.results.hitRatio > 0);
+        },
+        jsonData() {
+            if (! this.results) { return {}; }
+            return this.results;
+        },        
+    },
     data() {
         return {
-            jsonData: {},
-            minAccuracy: 0
+            results: null
         }
     },
     mounted() {
@@ -42,7 +74,7 @@ export default {
                 cases: this.allCases,
                 minAccuracy: this.minAccuracy
             })
-            this.jsonData = advancedAnalysis;
+            this.results = advancedAnalysis;
         }
     }
 }
